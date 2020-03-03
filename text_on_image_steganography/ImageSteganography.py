@@ -4,10 +4,15 @@ import os
 import cv2
 import numpy as np
 # Only works with PNG images due to JPG compression issues messing up the message
+from io import BytesIO
 
 def encodeMessage(image, msg, fileName):
     #cv2.imshow('The Original Image', np.array(image))
     image.show(title='Original Image')
+    img_file = BytesIO()
+    image.save(img_file, 'png')
+    image_file_size = img_file.tell()
+    print("Input File Size In Bytes:- "+str(image_file_size))
     msg = "." + msg
     width, height = image.size
     if (width * height) < len(msg):
@@ -93,8 +98,11 @@ def encodeMessage(image, msg, fileName):
     newPixel[1] = int(newPixel[1])
     newPixel[2] = int(newPixel[2])
     pixels[row-1, column-1] = tuple(newPixel)
-    image.save("./export/" + fileName)
+    image.save("export/" + fileName)
     #cv2.imshow('The final Image : ', image)
+    image.save(img_file, 'png')
+    image_file_size = img_file.tell()
+    print("Output File Size In Bytes:- "+str(image_file_size))
     image.show(title='Final Image. ')
 
 
