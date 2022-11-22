@@ -9,7 +9,7 @@ html5lib==0.9999999
 Markdown==2.6.11
 mock==3.0.5
 numpy==1.14.0
-Pillow==5.0.0
+Pillow==9.3.0
 protobuf==3.5.1
 six==1.11.0
 tensorboard==1.14.0
